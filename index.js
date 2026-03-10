@@ -14,10 +14,7 @@ const app = express();
 app.use(express.json());
 app.use(loggerMiddleware);
 
-app.get("/", (req, res) => {
-  res.send(`IAM Service is running on port ${process.env.PORT}`);
-});
-
+//--------------Routes----------------
 app.use("/auth-routes", AuthRoutes);
 
 //--------------Health Check----------------
@@ -46,9 +43,11 @@ app.use((err, req, res, next) => {
   });
 });
 
+//--------------Swagger Setup----------------
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
+//--------------Database Connection Test----------------
 async function testDb() {
   try {
     await prisma.$connect();
@@ -64,6 +63,7 @@ async function testDb() {
 
 testDb();
 
+//--------------Start Server----------------
 app.listen(process.env.PORT, () => {
   console.log(
     `IAM Service is running on port http://localhost:${process.env.PORT}`,

@@ -1,4 +1,4 @@
-import SignUpService from "../Services/Login/SignUpService.js";
+import SignUpService from "../Services/SignUpService.js";
 import { signUpSchema } from "../Validation/Validator.js";
 
 export const SignUpController = async (req, res, next) => {

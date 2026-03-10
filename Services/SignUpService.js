@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs";
-import prisma from "../../Config/prisma.js";
-import { GenerateToken } from "../../utils/GenerateToken.js";
-import { ErrorHandler } from "../../utils/ErrorHandler.js";
+import prisma from "../Config/prisma.js";
+import { GenerateToken } from "../utils/GenerateToken.js";
+import { ErrorHandler } from "../utils/ErrorHandler.js";
 class SignUpService {
   // Check if user already exists
   static async UserExists(email) {

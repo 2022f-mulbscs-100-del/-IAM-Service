@@ -1,4 +1,4 @@
-import LoginService from "../Services/Login/LoginService.js";
+import LoginService from "../Services/LoginService.js";
 import { loginSchema } from "../Validation/Validator.js";
 import { ErrorHandler } from "../utils/ErrorHandler.js";
 export const LoginController = async (req, res, next) => {

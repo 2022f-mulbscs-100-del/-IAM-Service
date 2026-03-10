@@ -1,4 +1,4 @@
-import { ErrorHandler } from "../../utils/ErrorHandler.js";
+import { ErrorHandler } from "../utils/ErrorHandler.js";
 import SignUpService from "./SignUpService.js";
 import bcrypt from "bcryptjs";
 class LoginService {
@@ -12,14 +12,14 @@ class LoginService {
   static async login(email, password) {
     const userExists = await SignUpService.GETUSER(email);
     if (!userExists) {
-      return ErrorHandler("User does not exist", 401);
+      throw ErrorHandler("User does not exist", 401);
     }
     const isValid = await LoginService.VALIDATEPASSWORD(
       password,
       userExists.auth.password,
     );
     if (!isValid) {
-      return ErrorHandler("Invalid credentials", 401);
+      throw ErrorHandler("Invalid credentials", 401);
     }
     const tokens = SignUpService.GENERATETOKENS(userExists);
     return { user: userExists, tokens };
